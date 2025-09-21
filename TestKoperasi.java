@@ -4,7 +4,6 @@ public class TestKoperasi {
     public static void main(String args[]) {
         Scanner input = new Scanner(System.in);
 
-        // Membuat objek anggota
         Anggota donny = new Anggota("111333444", "Donny", 5000000);
 
         System.out.println("Nama Anggota: " + donny.getNama());
