@@ -1,6 +1,6 @@
 public class Motor{
-    public int kecepatan = 0;
-    public boolean kontakOn = false;
+    private int kecepatan = 0;
+    private boolean kontakOn = false;
 
     public void nyalakanMesin(){
         kontakOn = true;
@@ -8,13 +8,20 @@ public class Motor{
 
     public void matikanMesin(){
         kontakOn = false;
-        kecepatan += 0;
+        kecepatan = 0;
     }
 
-    public void tambahKecepatan(){
-        if(kontakOn == true){
-            kecepatan += 5;
-        }else{
+    public void tambahKecepatan() {
+        if (kontakOn == true) {
+            if (kecepatan < 100) {
+                kecepatan += 5;
+                if (kecepatan > 100) {
+                    kecepatan = 100;
+                }
+            } else {
+                System.out.println("Kecepatan sudah maksimal (100)!\n");
+            }
+        } else {
             System.out.println("Kecepatan tidak bisa bertambah karena Mesin OFF! \n");
         }
     }
