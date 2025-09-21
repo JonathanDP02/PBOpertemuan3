@@ -1,39 +1,51 @@
-public class anggota {
+public class Anggota {
+    private String noKTP;
     private String nama;
-    private String alamat;
-    private float simpanan;
+    private int limitPinjaman;
+    private int jumlahPinjaman;
 
-    anggota(String nama, String alamat){
+    public Anggota(String noKTP, String nama, int limitPinjaman) {
+        this.noKTP = noKTP;
         this.nama = nama;
-        this.alamat = alamat;
-        this.simpanan = 0;
+        this.limitPinjaman = limitPinjaman;
+        this.jumlahPinjaman = 0;
     }
 
-    public void setNama(String nama){
-        this.nama = nama;
+    public String getNoKTP() {
+        return noKTP;
     }
 
-    public void setAlamat(String alamat){
-        this.alamat = alamat;
-    }
-
-    public String getNama(){
+    public String getNama() {
         return nama;
     }
 
-    public String getAlamat(){
-        return alamat;
+    public int getLimitPinjaman() {
+        return limitPinjaman;
     }
 
-    public float getSimpanan(){
-        return simpanan;
+    public int getJumlahPinjaman() {
+        return jumlahPinjaman;
     }
 
-    public void setor(float uang){
-        simpanan += uang;
+    public void pinjam(int jumlah) {
+        if (jumlahPinjaman + jumlah > limitPinjaman) {
+            System.out.println("Maaf, jumlah pinjaman melebihi limit.");
+        } else {
+            jumlahPinjaman += jumlah;
+        }
     }
 
-    public void pinjam(float uang){
-        simpanan -= uang;
+    public void angsur(int jumlah) {
+        int minimalAngsuran = (int)(0.1 * jumlahPinjaman);
+
+        if (jumlah < minimalAngsuran) {
+            System.out.println("Maaf, angsuran harus 10% dari jumlah pinjaman");
+        } else {
+            if (jumlah >= jumlahPinjaman) {
+                jumlahPinjaman = 0;
+            } else {
+                jumlahPinjaman -= jumlah;
+            }
+        }
     }
 }
